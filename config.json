@@ -1,0 +1,171 @@
+{
+    "prefix": "+",
+    "token": "",
+    "channelAmmount": 1,
+    "commands": {
+        "user": [
+            {
+                "name": "Help",
+                "description": "Shows a list with all available commands",
+                "usage": "+help [command]",
+                "parameters": {
+                    "command": {
+                        "description": "The specific command to send.",
+                        "required": false
+                    } 
+                }
+            }, {
+                "name": "Review",
+                "description": "Send a review about Streampy Hosting.",
+                "usage": "+review <1-5> [message]",
+                "parameters": {
+                    "1-5": {
+                        "description": "The total of stars to give.",
+                        "required": true
+                    },
+                    "message": {
+                        "description": "The review message to send.",
+                        "required": false
+                    }
+                }
+            }, {
+                "name": "Ticket",
+                "description": "Make a ticket channel to ask things to the admins.",
+                "usage": "+ticket [question]",
+                "parameters": {
+                    "question": {
+                        "description": "The question to be answered.",
+                        "required": false
+                    }
+                }
+            }, {
+                "name": "Suggestion",
+                "description": "Send your suggestion to the #suggestions channel.",
+                "usage": "+suggest [suggestion]",
+                "parameters": {
+                    "suggestion": {
+                        "description": "The suggestion to be send into the channel.",
+                        "required": true
+                    }
+                }
+            }
+        ],
+        "admin": [
+            {
+                "name": "Close",
+                "description": "Close the ticket you send the message in",
+                "usage": "+close"
+            }, {
+                "name": "Add user",
+                "description": "Add an user to a ticket channel.",
+                "usage": "+add|user| <user>",
+                "parameters": {
+                    "user": {
+                        "description": "The user to add to the channel.",
+                        "required": true
+                    }
+                }
+            }, {
+                "name": "Remove user",
+                "description": "Remove an user from a ticket channel.",
+                "usage": "+del|user| <user>",
+                "parameters": {
+                    "user": {
+                        "description": "The user to remove from the channel.",
+                        "required": true
+                    }
+                }
+            }, {
+                "name": "Say",
+                "description": "Send a message via the bot to the announcement channel.",
+                "usage": "+say <text>",
+                "parameters": {
+                    "text": {
+                        "description": "the message to be send in the announcement channel.",
+                        "required": true
+                    }
+                }
+            }, {
+                "name": "Say embed",
+                "description": "Send a message in embed form via the bot to the announcement channel.",
+                "usage": "+saye <title> | <text>",
+                "parameters": {
+                    "title": {
+                        "description": "The title for the embed.",
+                        "required": true
+                    },
+                    "|": {
+                        "description": "This separates the title from the text, do **not** forget it.",
+                        "required": true
+                    },
+                    "text": {
+                        "description": "The text for the announcement.",
+                        "required": true
+                    }
+                }
+            }, {
+                "name": "Warn",
+                "description": "Warn an user. 3+ warns result in a mute for 3 hours.",
+                "usage": "+mute <user> [reason]",
+                "parameters": {
+                    "user": {
+                        "description": "The user to be muted.",
+                        "required": true
+                    },
+                    "reason": {
+                        "description": "The reason for warning the user.",
+                        "required": false
+                    }
+                }
+            }, {
+                "name": "Mute",
+                "description": "Mute an user from the server.",
+                "usage": "+mute <user>",
+                "parameters": {
+                    "user": {
+                        "description": "The user to be muted.",
+                        "required": true
+                    }
+                }
+            }, {
+                "name": "Unmute",
+                "description": "Unmute an user from the server.",
+                "usage": "+unmute <user>",
+                "parameters": {
+                    "user": {
+                        "description": "The user to be unmuted.",
+                        "required": true
+                    }
+                }
+            }, {
+                "name": "Kick",
+                "description": "Kick an user from the server.",
+                "usage": "+kick <user> [reason]",
+                "parameters": {
+                    "user": {
+                        "description": "The user to be kicked.",
+                        "required": true
+                    },
+                    "reason": {
+                        "description": "The reason for kicking the user.",
+                        "required": false
+                    }
+                }
+            }, {
+                "name": "Ban",
+                "description": "Ban an user from the server.",
+                "usage": "+ban <user> [reason]",
+                "parameters": {
+                    "user": {
+                        "description": "The user to be banned.",
+                        "required": true
+                    },
+                    "reason": {
+                        "description": "The reason for banning the user.",
+                        "required": false
+                    }
+                }
+            }
+        ]
+    }
+}
