@@ -11,7 +11,7 @@ client.on('ready', () => {
 })
 
 client.on('guildMemberAdd', member => {
-    if (member.roles.has(member.guild.roles.find(role => role.name === 'verified')).id) {
+    if (member.roles.has(member.guild.roles.find(role => role.name.toLowerCase().match(/verified/))).id) {
         var channel = client.guilds.get(member.guild.id).channels.find(channel => channel.name.toLowerCase().match(/welcome/))
         var logchannel = client.guilds.get(member.guild.id).channels.find(channel => channel.name.toLowerCase().match(/staff-logs/))
         logchannel.send({
@@ -133,8 +133,8 @@ client.on('guildMemberAdd', member => {
 
                         allow.on('collect', r => {
                             member.addRoles([
-                                member.guild.roles.find(role => role.name == 'verified').id,
-                                member.guild.roles.find(role => role.name == 'nl').id
+                                member.guild.roles.find(role => role.name.toLowerCase().match(/verified/)).id,
+                                member.guild.roles.find(role => role.name.toLowerCase().match(/nl/)).id
                             ])
                             msg.channel.delete()
 
@@ -234,8 +234,8 @@ client.on('guildMemberAdd', member => {
 
                         allow.on('collect', r => {
                             member.addRoles([
-                                member.guild.roles.find(role => role.name == 'verified').id,
-                                member.guild.roles.find(role => role.name == 'en').id
+                                member.guild.roles.find(role => role.name.toLowerCase().match(/verified/)).id,
+                                member.guild.roles.find(role => role.name.toLowerCase().match(/en/)).id
                             ])
                             msg.channel.delete()
 
@@ -393,6 +393,14 @@ client.on('messageUpdate', (omsg, nmsg) => {
     const notAllowed = [ 'http://', 'discord.gg', 'cancer', 'kanker', 'tyfus', 'fuck', 'kut', 'aids', 'jezus', 'godver' ]
 
     if (!nmsg.member.roles.has(adminRole) && notAllowed.some(word => nmsg.content.includes(word))) {
+        if (omsg.content.length > 1000) {
+            omsg.content = omsg.content.substring(0, 1000)
+            omsg.content += '...'
+        }
+        if (nmsg.content.length > 1000) {
+            nmsg.content = nmsg.content.substring(0, 1000)
+            nmsg.content += '...'
+        }
         nmsg.delete()
         channel.send({
             "embed": {
@@ -587,7 +595,7 @@ client.on('message', async (message) => {
             message.channel.send({
                 "embed": {
                     "title": "Review",
-                    "description": `Thanks **${message.author.username}** for your review, it has been send in the <#${message.guild.channels.find(channel => channel.name.toLowerCase().match(/reviews/)).id}> channel!`,
+                    "description": `Thanks **${message.author.username}** for your review, it has been send in the <#${message.guild.channels.find(channel => channel.name.toLowerCase().match(/review/)).id}> channel!`,
                     "color": 1409939,
                     "footer": {
                         "text": `© Copyright Streampyhosting - 2019`
@@ -622,7 +630,7 @@ client.on('message', async (message) => {
             allow: 511040
         }, {
             id: allowedAdminId,
-            allow: 8
+            allow: 2080898295
         }]).then(channel => {
             //channel.setParent('527421636132208640') FIXME: verander "527421636132208640" naar de gewenste category id
             channel.send({
@@ -972,7 +980,7 @@ client.on('message', async (message) => {
                 }
             }
         })
-        var channel = message.guild.channels.find(chan => chan.name == 'announcement')
+        var channel = message.guild.channels.find(chan => chan.name.toLowerCase().match(/announcement/))
         channel.send(msg).catch(err => console.error(err))
     } else
     if (command == 'saye') {
@@ -990,7 +998,7 @@ client.on('message', async (message) => {
         })
         var title = message.content.replace('+saye', '').split('|')[0].trim()
         var text = message.content.replace(/\|/, '|||||').split('|||||')[1].trim()
-        var channel = message.guild.channels.find(chan => chan.name == 'announcement')
+        var channel = message.guild.channels.find(chan => chan.name.toLowerCase().match(/announcement/))
         channel.send({
             "embed": {
                 "title": `${title}`,
